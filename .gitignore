@@ -1,0 +1,50 @@
+# 环境变量文件
+.env
+.env.local
+.env.*.local
+print-agent/.env
+print-agent/.env.*
+
+# IDE
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Java
+*.class
+*.jar
+*.war
+*.ear
+target/
+!.mvn/wrapper/maven-wrapper.jar
+
+# Node
+node_modules/
+dist/
+.npm
+*.tgz
+
+# Logs
+*.log
+logs/
+
+# 临时文件
+*.tmp
+*.bak
+.superpowers/
+
+# 数据库备份和部署产物
+backup/
+*.sql.gz
+deploy/*.zip
+deploy/upload/
+
+# 第三方打印机驱动和安装程序
+CX-Printer_V1.00_20240124/
+*.exe
+*.dll

@@ -1,0 +1,14 @@
+{
+  "name": "garment-print-agent",
+  "version": "1.0.0",
+  "description": "CX 热敏打印机本地打印服务",
+  "type": "module",
+  "scripts": {
+    "start": "node index.js",
+    "test": "node tests/security.test.mjs"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0"
+  }
+}

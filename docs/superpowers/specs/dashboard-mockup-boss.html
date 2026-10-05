@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生产进度看板 - 老板视角（布局草图）</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Segoe UI', 'PingFang SC', sans-serif; background: #f5f7fa; }
+        .progress-bar { height: 8px; border-radius: 4px; background: #e4e7ed; overflow: hidden; }
+        .progress-fill { height: 100%; border-radius: 4px; transition: width 0.3s; }
+        .mockup-badge { font-size: 11px; padding: 2px 8px; border-radius: 4px; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,0,0,0.08); }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+    <div class="max-w-[1200px] mx-auto">
+        <!-- 页面标题 -->
+        <div class="mb-6">
+            <h1 class="text-2xl font-bold text-gray-800">📊 生产进度看板</h1>
+            <p class="text-gray-500 text-sm mt-1">某某制衣有限公司 | 数据更新于 2026-06-02 14:30</p>
+        </div>
+
+        <!-- ===== 顶部统计卡片（4个） ===== -->
+        <div class="grid grid-cols-4 gap-4 mb-6">
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-gray-500 text-sm">今日完成件数</span>
+                    <span class="text-2xl">📦</span>
+                </div>
+                <div class="text-3xl font-bold text-gray-800">1,280</div>
+                <div class="text-green-500 text-sm mt-1">↑ 较昨日 +12%</div>
+            </div>
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-gray-500 text-sm">在产款式数</span>
+                    <span class="text-2xl">👕</span>
+                </div>
+                <div class="text-3xl font-bold text-gray-800">5</div>
+                <div class="text-gray-400 text-sm mt-1">共 8 个款式</div>
+            </div>
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-red-100 card-hover transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-gray-500 text-sm">异常扎货数</span>
+                    <span class="text-2xl">⚠️</span>
+                </div>
+                <div class="text-3xl font-bold text-red-500">3</div>
+                <div class="text-red-400 text-sm mt-1">需要关注</div>
+            </div>
+            <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all">
+                <div class="flex items-center justify-between mb-2">
+                    <span class="text-gray-500 text-sm">在产工人数</span>
+                    <span class="text-2xl">👷</span>
+                </div>
+                <div class="text-3xl font-bold text-gray-800">42</div>
+                <div class="text-gray-400 text-sm mt-1">今日已报工 38 人</div>
+            </div>
+        </div>
+
+        <!-- ===== 中部：款式卡片 + 异常预警 ===== -->
+        <div class="flex gap-4 mb-6">
+            <!-- 左侧：款式进度卡片（占2/3） -->
+            <div class="flex-[2]">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">款式生产进度</h2>
+                    <div class="flex gap-2">
+                        <span class="mockup-badge bg-blue-50 text-blue-600">生产中 5</span>
+                        <span class="mockup-badge bg-green-50 text-green-600">已完成 2</span>
+                        <span class="mockup-badge bg-gray-50 text-gray-500">未开始 1</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4">
+                    <!-- 卡片1 -->
+                    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-gray-800">SX-2024-001</span>
+                                <span class="mockup-badge bg-blue-50 text-blue-600">生产中</span>
+                            </div>
+                            <span class="text-gray-400 text-xs">3 床</span>
+                        </div>
+                        <div class="flex items-baseline gap-1 mb-3">
+                            <span class="text-2xl font-bold text-gray-800">320</span>
+                            <span class="text-gray-400">/ 500 件</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-blue-500" style="width: 64%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>完成 64%</span>
+                            <span>最近报工：2小时前</span>
+                        </div>
+                    </div>
+                    <!-- 卡片2 -->
+                    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-gray-800">SX-2024-002</span>
+                                <span class="mockup-badge bg-green-50 text-green-600">已完成</span>
+                            </div>
+                            <span class="text-gray-400 text-xs">2 床</span>
+                        </div>
+                        <div class="flex items-baseline gap-1 mb-3">
+                            <span class="text-2xl font-bold text-green-600">300</span>
+                            <span class="text-gray-400">/ 300 件</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-green-500" style="width: 100%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>完成 100%</span>
+                            <span>最近报工：昨天</span>
+                        </div>
+                    </div>
+                    <!-- 卡片3 -->
+                    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-gray-800">SX-2024-003</span>
+                                <span class="mockup-badge bg-blue-50 text-blue-600">生产中</span>
+                            </div>
+                            <span class="text-gray-400 text-xs">5 床</span>
+                        </div>
+                        <div class="flex items-baseline gap-1 mb-3">
+                            <span class="text-2xl font-bold text-gray-800">145</span>
+                            <span class="text-gray-400">/ 800 件</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-blue-500" style="width: 18%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>完成 18%</span>
+                            <span>最近报工：30分钟前</span>
+                        </div>
+                    </div>
+                    <!-- 卡片4 -->
+                    <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100 card-hover transition-all cursor-pointer">
+                        <div class="flex items-center justify-between mb-3">
+                            <div class="flex items-center gap-2">
+                                <span class="font-bold text-gray-800">SX-2024-004</span>
+                                <span class="mockup-badge bg-blue-50 text-blue-600">生产中</span>
+                            </div>
+                            <span class="text-gray-400 text-xs">2 床</span>
+                        </div>
+                        <div class="flex items-baseline gap-1 mb-3">
+                            <span class="text-2xl font-bold text-gray-800">210</span>
+                            <span class="text-gray-400">/ 400 件</span>
+                        </div>
+                        <div class="progress-bar mb-2">
+                            <div class="progress-fill bg-blue-500" style="width: 52%"></div>
+                        </div>
+                        <div class="flex justify-between text-xs text-gray-400">
+                            <span>完成 52%</span>
+                            <span>最近报工：1小时前</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 右侧：异常预警（占1/3） -->
+            <div class="flex-1">
+                <div class="flex items-center justify-between mb-4">
+                    <h2 class="text-lg font-bold text-gray-800">异常预警</h2>
+                    <span class="mockup-badge bg-red-50 text-red-500 font-bold">3</span>
+                </div>
+                <div class="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden">
+                    <div class="p-4 border-b border-red-50 bg-red-50/50">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-bold text-gray-800">扎号 B001</div>
+                                <div class="text-sm text-gray-500">款号 SX-2024-001 · 1号床</div>
+                            </div>
+                            <span class="mockup-badge bg-red-100 text-red-600">3天无报工</span>
+                        </div>
+                    </div>
+                    <div class="p-4 border-b border-gray-50">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-bold text-gray-800">扎号 B015</div>
+                                <div class="text-sm text-gray-500">款号 SX-2024-003 · 2号床</div>
+                            </div>
+                            <span class="mockup-badge bg-orange-100 text-orange-600">工序退回待处理</span>
+                        </div>
+                    </div>
+                    <div class="p-4">
+                        <div class="flex items-center justify-between">
+                            <div>
+                                <div class="font-bold text-gray-800">扎号 B008</div>
+                                <div class="text-sm text-gray-500">款号 SX-2024-002 · 1号床</div>
+                            </div>
+                            <span class="mockup-badge bg-orange-100 text-orange-600">2天无报工</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 快捷筛选 -->
+                <div class="mt-4 bg-white rounded-xl p-4 shadow-sm border border-gray-100">
+                    <h3 class="font-bold text-gray-700 mb-3 text-sm">快捷筛选</h3>
+                    <div class="space-y-2">
+                        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                            <input type="checkbox" checked class="rounded">
+                            <span>只看生产中款式</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                            <input type="checkbox" class="rounded">
+                            <span>显示已完成款式</span>
+                        </label>
+                        <label class="flex items-center gap-2 text-sm text-gray-600 cursor-pointer">
+                            <input type="checkbox" checked class="rounded">
+                            <span>高亮异常扎货</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 底部：近7日产量趋势 ===== -->
+        <div class="bg-white rounded-xl p-5 shadow-sm border border-gray-100">
+            <h2 class="text-lg font-bold text-gray-800 mb-4">近7日产量趋势</h2>
+            <div class="flex items-end justify-between h-48 px-4 gap-3">
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 45%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">450</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周一</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 62%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">620</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周二</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 55%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">550</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周三</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 78%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">780</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周四</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 70%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">700</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周五</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-100 rounded-t-lg relative" style="height: 85%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">850</div>
+                    </div>
+                    <span class="text-xs text-gray-400">周六</span>
+                </div>
+                <div class="flex-1 flex flex-col items-center gap-2">
+                    <div class="w-full bg-blue-500 rounded-t-lg relative" style="height: 100%">
+                        <div class="absolute -top-6 left-1/2 -translate-x-1/2 text-sm font-bold text-blue-600">1,280</div>
+                    </div>
+                    <span class="text-xs text-gray-400 font-bold text-blue-600">今日</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- ===== 点击款式后的详情抽屉示意 ===== -->
+        <div class="mt-8 border-t-2 border-dashed border-gray-300 pt-6">
+            <p class="text-gray-400 text-sm mb-4">👇 点击上方款式卡片后展开的详情（抽屉/弹窗示意）</p>
+            <div class="bg-white rounded-xl p-5 shadow-lg border border-gray-200">
+                <div class="flex items-center justify-between mb-4">
+                    <div>
+                        <h3 class="text-lg font-bold text-gray-800">SX-2024-001 生产详情</h3>
+                        <p class="text-sm text-gray-500">总进度 320/500 件 (64%)</p>
+                    </div>
+                    <button class="text-gray-400 hover:text-gray-600 text-xl">✕</button>
+                </div>
+                <div class="space-y-4">
+                    <!-- 床号1 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-gray-700">1号床 · 200件</span>
+                            <span class="mockup-badge bg-blue-50 text-blue-600">完成 75%</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">裁剪</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-green-500" style="width: 100%"></div></div>
+                                <span class="text-sm text-green-600 w-12 text-right">100%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">缝纫前片</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-green-500" style="width: 100%"></div></div>
+                                <span class="text-sm text-green-600 w-12 text-right">100%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">缝纫后片</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-blue-500" style="width: 80%"></div></div>
+                                <span class="text-sm text-blue-600 w-12 text-right">80%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">合缝</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-gray-200" style="width: 0%"></div></div>
+                                <span class="text-sm text-gray-400 w-12 text-right">0%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 床号2 -->
+                    <div class="border rounded-lg p-4">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-gray-700">2号床 · 150件</span>
+                            <span class="mockup-badge bg-blue-50 text-blue-600">完成 60%</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">裁剪</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-green-500" style="width: 100%"></div></div>
+                                <span class="text-sm text-green-600 w-12 text-right">100%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">缝纫前片</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-blue-500" style="width: 60%"></div></div>
+                                <span class="text-sm text-blue-600 w-12 text-right">60%</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- 床号3 -->
+                    <div class="border rounded-lg p-4 border-red-100 bg-red-50/30">
+                        <div class="flex items-center justify-between mb-3">
+                            <span class="font-bold text-gray-700">3号床 · 150件</span>
+                            <span class="mockup-badge bg-red-50 text-red-600">异常</span>
+                        </div>
+                        <div class="space-y-2">
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">裁剪</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-green-500" style="width: 100%"></div></div>
+                                <span class="text-sm text-green-600 w-12 text-right">100%</span>
+                            </div>
+                            <div class="flex items-center gap-3">
+                                <span class="text-sm text-gray-500 w-24">缝纫前片</span>
+                                <div class="flex-1 progress-bar"><div class="progress-fill bg-red-500" style="width: 10%"></div></div>
+                                <span class="text-sm text-red-600 w-12 text-right">10%</span>
+                            </div>
+                        </div>
+                        <p class="text-xs text-red-500 mt-2">⚠️ 扎号 B001 超过3天未报工</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

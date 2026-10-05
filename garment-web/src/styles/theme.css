@@ -1,0 +1,93 @@
+/* =========================================================================
+   全局主题变量（明亮 / 暗黑）
+   - :root 下为明亮模式（琥珀 + 炭灰 + 奶油白，沿用原有品牌色）
+   - html.dark 下覆盖为暗黑模式
+   - 语义变量（--bg-page / --bg-card / --text-* / --border-color）供页面统一引用
+   ========================================================================= */
+
+:root {
+  /* Core palette（原有品牌色，保持不变） */
+  --color-charcoal: #1e2328;
+  --color-charcoal-light: #282e35;
+  --color-charcoal-hover: #323940;
+  --color-amber: #e8a838;
+  --color-amber-dark: #d4952e;
+  --color-amber-glow: rgba(232, 168, 56, 0.15);
+  --color-terracotta: #c47a5a;
+  --color-cream: #f7f4ef;
+  --color-cream-dark: #efe9e0;
+  --color-slate: #2d3748;
+  --color-slate-light: #64748b;
+  --color-mist: #94a3b8;
+  --color-success: #4ade80;
+  --color-danger: #f87171;
+  --color-warning: #fbbf24;
+  --color-info: #60a5fa;
+
+  /* Sidebar */
+  --sidebar-width: 240px;
+  --sidebar-collapsed: 68px;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --radius-xl: 20px;
+
+  /* Shadows */
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.03);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.04), 0 8px 24px rgba(0,0,0,0.06);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.08), 0 2px 8px rgba(0,0,0,0.04);
+  --shadow-amber: 0 4px 16px rgba(232, 168, 56, 0.25);
+
+  /* Transitions */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* ===== 语义变量（明亮模式默认值） ===== */
+  --bg-page: var(--color-cream);            /* 页面主背景 */
+  --bg-card: #ffffff;                       /* 卡片 / 面板底 */
+  --bg-header: rgba(255, 255, 255, 0.75);   /* 顶栏 / 标题栏毛玻璃 */
+  --bg-tabbar: rgba(255, 255, 255, 0.92);   /* 移动端底部 tabbar 毛玻璃 */
+  --bg-hover: rgba(0, 0, 0, 0.03);          /* 列表行 / 卡片 hover */
+  --text-primary: var(--color-slate);       /* 主文字 */
+  --text-secondary: var(--color-slate-light); /* 次文字 */
+  --text-muted: var(--color-mist);          /* 弱化文字 */
+  --border-color: #e2e0dc;                  /* 分割线 / 输入框边框 */
+  --border-color-hover: #c8c4be;            /* 输入框 hover 边框 */
+  --scrollbar-thumb: #d1cdc7;
+  --scrollbar-thumb-hover: #b8b3ac;
+}
+
+/* ===== 暗黑模式覆盖 ===== */
+html.dark {
+  color-scheme: dark;
+
+  --color-cream: #1a1d21;
+  --color-cream-dark: #14171a;
+
+  /* 文字色覆盖：大量组件用 var(--color-slate/-light/-mist) 作文字色，
+     暗黑下统一转亮，避免逐文件修改 */
+  --color-slate: #e5e7eb;
+  --color-slate-light: #9ca3af;
+  --color-mist: #6b7280;
+
+  /* 语义变量暗黑值 */
+  --bg-page: #1a1d21;
+  --bg-card: #252a31;
+  --bg-header: rgba(37, 42, 49, 0.75);
+  --bg-tabbar: rgba(37, 42, 49, 0.92);
+  --bg-hover: rgba(255, 255, 255, 0.05);
+  --text-primary: var(--color-slate);
+  --text-secondary: var(--color-slate-light);
+  --text-muted: var(--color-mist);
+  --border-color: #3a4049;
+  --border-color-hover: #4b525d;
+  --scrollbar-thumb: #3a4049;
+  --scrollbar-thumb-hover: #4b525d;
+
+  /* 暗黑下阴影加深 */
+  --shadow-soft: 0 1px 3px rgba(0,0,0,0.3), 0 4px 12px rgba(0,0,0,0.25);
+  --shadow-card: 0 2px 8px rgba(0,0,0,0.3), 0 8px 24px rgba(0,0,0,0.35);
+  --shadow-elevated: 0 8px 32px rgba(0,0,0,0.45), 0 2px 8px rgba(0,0,0,0.3);
+}
